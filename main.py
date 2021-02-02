@@ -5,6 +5,7 @@ from tkinter import messagebox
 
 File = ''
 File2 = ''
+File3 = ' '
 
 
 def excel_filter(path, file2):
@@ -37,18 +38,23 @@ def get_file(num):
         global File
         File = askopenfilename()
         label1.configure(text=File)
-    else:
+    elif num == 2:
         global File2
         File2 = askopenfilename()
         label2.configure(text=File2)
+    else:
+        global File3
+        File3 = askopenfilename()
+        label3.configure(text=File3)
 
 
 def start():
-    if not File or not File2:
+    if not File or not File2 or not File3:
         return messagebox.showerror("Error", "Missing files")
-    if (File == File2):
+    if (File == File2 or File == File3 or File2 == File3):
         return messagebox.showerror('Error', 'Duplicate Files')
     excel_filter(File, File2)
+    excel_filter(File, File3)
 
 
 File = ''
@@ -62,6 +68,7 @@ window.geometry('400x150')
 btn1 = Button(window, text="File1", command=lambda: get_file(1))
 btn2 = Button(window, text="File2", command=lambda: get_file(2))
 btn = Button(window, text="Sort", command=start)
+btn3 = Button(window, text="File3", command=lambda: get_file(3))
 
 label1 = Label(window, text="")
 
@@ -73,12 +80,17 @@ label2 = Label(window, text="")
 
 label2.grid(column=2, row=2)
 
+label3 = Label(window, text="")
+
+label3.grid(column=2, row=3)
+
+
 btn1.grid(column=1, row=1)
 btn2.grid(column=1, row=2)
-btn.grid(column=1, row=3)
+btn.grid(column=1, row=4)
+btn3.grid(column=1, row=3)
 
-
-window.resizable(False, False) 
+window.resizable(False, False)
 window.mainloop()
 
 
