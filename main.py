@@ -9,16 +9,21 @@ File3 = ' '
 
 
 def excel_filter(path, file2):
+
     codes_coulmn = 'I'
-    coulm_check1 = 'G'
-    coulm_check2 = 'H'
+
+    codes_coulmn2 = 'M'
+
+    coulm_check1 = 'I'
+    coulm_check2 = 'I'
+
     index = 6
     codes = []
     wb = load_workbook(path)
     ws1 = wb.active
-    while (ws1[f'{codes_coulmn}{index}'].value):
+    while (ws1[f'{codes_coulmn2}{index}'].value):
         if (ws1[f'{coulm_check1}{index}'].value == 0) and ((ws1[f'{coulm_check2}{index}'].value == 0)):
-            codes.append(ws1[f'{codes_coulmn}{index}'].value)
+            codes.append(ws1[f'{codes_coulmn2}{index}'].value)
 
         index += 1
 
